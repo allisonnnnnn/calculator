@@ -42,18 +42,67 @@ class App extends React.Component {
   };
 
   add = () => {
-    this.state.previousNumber = this.state.input;
-    this.setState({ input: "" });
-    this.state.operator = "plus";
+    // this.state.previousNumber = this.state.input;
+    // this.setState({ input: "" });
+    // this.state.operator = "plus";
+
+    this.setState({
+      previousNumber: this.state.input,
+      input: "",
+      operator: "plus"
+    });
     console.log("hi");
   };
 
+  substract = () => {
+    this.setState({
+      previousNumber: this.state.input,
+      input: "",
+      operator: "substract"
+    });
+  };
+
+  multiply = () => {
+    this.setState({
+      previousNumber: this.state.input,
+      input: "",
+      operator: "multiply"
+    });
+  };
+
+  divide = () => {
+    this.setState({
+      previousNumber: this.state.input,
+      input: "",
+      operator: "divide"
+    });
+  };
+
   evaluate = () => {
+    // this.setState({ currentNumber: this.state.input });
     this.state.currentNumber = this.state.input;
     if (this.state.operator === "plus") {
       this.setState({
         input:
           parseInt(this.state.previousNumber) +
+          parseInt(this.state.currentNumber)
+      });
+    } else if (this.state.operator === "substract") {
+      this.setState({
+        input:
+          parseInt(this.state.previousNumber) -
+          parseInt(this.state.currentNumber)
+      });
+    } else if (this.state.operator === "multiply") {
+      this.setState({
+        input:
+          parseInt(this.state.previousNumber) *
+          parseInt(this.state.currentNumber)
+      });
+    } else if (this.state.operator === "divide") {
+      this.setState({
+        input:
+          parseInt(this.state.previousNumber) /
           parseInt(this.state.currentNumber)
       });
     }
@@ -70,13 +119,13 @@ class App extends React.Component {
             <Button handleClick={this.addToInput}>7</Button>
             <Button handleClick={this.addToInput}>8</Button>
             <Button handleClick={this.addToInput}>9</Button>
-            <Button>/</Button>
+            <Button handleClick={this.divide}>/</Button>
           </div>
           <div className="row">
             <Button handleClick={this.addToInput}>4</Button>
             <Button handleClick={this.addToInput}>5</Button>
             <Button handleClick={this.addToInput}>6</Button>
-            <Button>*</Button>
+            <Button handleClick={this.multiply}>*</Button>
           </div>
           <div className="row">
             <Button handleClick={this.addToInput}>1</Button>
@@ -88,7 +137,7 @@ class App extends React.Component {
             <Button handleClick={this.addDecimal}>.</Button>
             <Button handleClick={this.addZeroToInput}>0</Button>
             <Button handleClick={this.evaluate}>=</Button>
-            <Button>-</Button>
+            <Button handleClick={this.substract}>-</Button>
           </div>
           <div className="row">
             <ClearButton handleClear={this.clearInput}>Clear</ClearButton>
