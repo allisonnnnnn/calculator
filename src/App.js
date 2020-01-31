@@ -19,9 +19,17 @@ class App extends React.Component {
 
   addToInput = val => {
     // val from Button children
-    console.log("hi");
+
     this.setState({ input: this.state.input + val });
   };
+
+  addZeroToInput = val => {
+    // if this.state.input is not empty, then, add zero;because we dont want the first number to be a zero
+    if (this.state.input !== "") {
+      this.setState({ input: this.state.input + val });
+    }
+  };
+
   render() {
     return (
       <div className="App">
@@ -49,7 +57,7 @@ class App extends React.Component {
           </div>
           <div className="row">
             <Button>.</Button>
-            <Button>0</Button>
+            <Button handleClick={this.addZeroToInput}>0</Button>
             <Button>=</Button>
             <Button>-</Button>
           </div>
