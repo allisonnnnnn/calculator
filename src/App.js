@@ -30,6 +30,17 @@ class App extends React.Component {
     }
   };
 
+  addDecimal = val => {
+    // only add decial if there is no current decimal
+    if (this.state.input.indexOf(".") === -1) {
+      this.setState({ input: this.state.input + val });
+    }
+  };
+
+  clearInput = val => {
+    this.setState({ input: "" });
+  };
+
   render() {
     return (
       <div className="App">
@@ -56,13 +67,13 @@ class App extends React.Component {
             <Button>+</Button>
           </div>
           <div className="row">
-            <Button>.</Button>
+            <Button handleClick={this.addDecimal}>.</Button>
             <Button handleClick={this.addZeroToInput}>0</Button>
             <Button>=</Button>
             <Button>-</Button>
           </div>
           <div className="row">
-            <ClearButton>Clear</ClearButton>
+            <ClearButton handleClear={this.clearInput}>Clear</ClearButton>
           </div>
         </div>
       </div>
